@@ -61,8 +61,8 @@ export const projects: Project[] = [
       'https://images.unsplash.com/photo-1765728617805-b9f22d64e5b3?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxleGVyY2lzZSUyMHRyYWluaW5nJTIwZ3ltfGVufDF8fHx8MTc2NTk2MTg3Mnww&ixlib=rb-4.1.0&q=80&w=1080',
     ],
     role: 'Product Designer',
-    tools: ['Figma', 'GSAP', 'HTML', 'CSS', 'JAVASCRIPT'],
-    description: '',
+    tools: ['PSPlay.js', 'HTML', 'CSS', 'Tailwind', 'JAVASCRIPT', 'Figma'],
+    description: 'Un jeu 2D developper en javascrit avec P5Play.js qui sert à faire de la prévention contre la pullution digital.Dans Ce je on incarne Zippy une petite souris qui lutter contre malware et mail frauduleux',
     problem: '',
     process: '',
     color: '#EC4899'
@@ -159,7 +159,7 @@ export const projects: Project[] = [
   },
   {
     id: '10',
-    title: 'One page pour Olive Oil',
+    title: 'One page pour marque d\'huile d\'olive premium',
     category: 'UI/UX Design',
     cover: './assets/projets/olive-oil.png',
     images: [
