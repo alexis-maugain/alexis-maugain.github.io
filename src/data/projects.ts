@@ -6,7 +6,7 @@ export const projects: Project[] = [
     id: '1', 
     title: 'Refonte du site web d\'une cave à vin',
     category: 'UI/UX Design',
-    cover: './assets/projets/fiefdesvins.png',
+    cover: './assets/projets/fiefdesvins/fiefdesvins.png',
     images: [
       'https://images.unsplash.com/photo-1742836531239-1fe146bf7e3f?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxlY29tbWVyY2UlMjBtb2JpbGUlMjBkZXNpZ258ZW58MXx8fHwxNzY1OTYxODY3fDA&ixlib=rb-4.1.0&q=80&w=1080',
     ],
@@ -21,7 +21,7 @@ export const projects: Project[] = [
     id: '2',
     title: 'Livre de cuisine',
     category: 'Print Design',
-    cover: './assets/projets/livre-recette.png',
+    cover: './assets/projets/livre-recette/livre-recette.png',
     images: [
       'https://images.unsplash.com/photo-1495521821757-a1efb6729352?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxyZWNpcGUlMjBjb29raW5nJTIwYm9va3xlbnwxfHx8fDE3NjU5NjExNzZ8MA&ixlib=rb-4.1.0&q=80&w=1080',
       'https://images.unsplash.com/photo-1495520821757-a1efb6729352?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxjdWlzaW5lJTIwZm9vZCUyMGFwcHxlbnwxfHx8fDE3NjU5NjE4NzJ8MA&ixlib=rb-4.1.0&q=80&w=1080',
@@ -37,7 +37,7 @@ export const projects: Project[] = [
     id: '3',
     title: 'Produire du contenu multimédia',
     category: 'Motion Design',
-    cover: './assets/projets/subway-surfer.png',
+    cover: './assets/projets/subway-surfer/subway-surfer.png',
     images: [
       'https://images.unsplash.com/photo-1764258560286-b3aa856c8ff0?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxtb3Rpb24lMjBncmFwaGljcyUyMGRlc2lnbnxlbnwxfHx8fDE3NjU5NTgxMTN8MA&ixlib=rb-4.1.0&q=80&w=1080',
       'https://images.unsplash.com/photo-1764601841403-5c43713923c7?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxicmFuZCUyMGlkZW50aXR5JTIwYW5pbWF0aW9ufGVufDF8fHx8MTc2NTk2MTg3MHww&ixlib=rb-4.1.0&q=80&w=1080',
@@ -54,7 +54,7 @@ export const projects: Project[] = [
     id: '4',
     title: 'Nuit du Code',
     category: 'UI/UX Design',
-    cover: './assets/projets/nuitcode.png',
+    cover: './assets/projets/nuitcode/nuitcode.png',
     images: [
       'https://images.unsplash.com/photo-1748280621226-91f9530fc329?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxmaXRuZXNzJTIwYXBwJTIwd29ya291dHxlbnwxfHx8fDE3NjU5NjExNzZ8MA&ixlib=rb-4.1.0&q=80&w=1080',
       'https://images.unsplash.com/photo-1633613287441-3f72304088ad?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxoZWFsdGglMjB0cmFja2luZyUyMG1vYmlsZXxlbnwxfHx8fDE3NjU5NjE4NzJ8MA&ixlib=rb-4.1.0&q=80&w=1080',
@@ -71,7 +71,7 @@ export const projects: Project[] = [
     id: '5',
     title: 'Créer un site WordPress de type \'click & collect\'',
     category: 'UI/UX Design',
-    cover: './assets/projets/danniel-wellington.png',
+    cover: './assets/projets/danniel-wellington/danniel-wellington.png',
     images: [
       'https://images.unsplash.com/photo-1667674557680-57d5001715b0?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHwzZCUyMHdlYiUyMGRlc2lnbnxlbnwxfHx8fDE3NjU5NjE4NzN8MA&ixlib=rb-4.1.0&q=80&w=1080',
       'https://images.unsplash.com/photo-1746292506315-e346cba2af48?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHx3ZWJnbCUyMGludGVyYWN0aXZlJTIwZXhwZXJpZW5jZXxlbnwxfHx8fDE3NjU5NjE4NzR8MA&ixlib=rb-4.1.0&q=80&w=1080',
@@ -89,7 +89,7 @@ export const projects: Project[] = [
     id: '6',
     title: 'Créer pour une campagne de communication visuelle',
     category: 'UI/UX Design',
-    cover: './assets/projets/lebarbare.png',
+    cover: './assets/projets/lebarbare/lebarbare.png',
     images: [
       'https://images.unsplash.com/photo-1698440050363-1697e5f0277c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxkZXNpZ24lMjBzeXN0ZW0lMjBjb21wb25lbnRzfGVufDF8fHx8MTc2NTg3MTU1Nnww&ixlib=rb-4.1.0&q=80&w=1080',
       'https://images.unsplash.com/photo-1602221527282-dabc4778535b?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHx1aSUyMGtpdCUyMGxpYnJhcnl8ZW58MXx8fHwxNzY1OTYxODc1fDA&ixlib=rb-4.1.0&q=80&w=1080',
@@ -107,7 +107,7 @@ export const projects: Project[] = [
     id: '7',
     title: 'Concevoir des visualisations de données pour le web',
     category: 'UI/UX Design',
-    cover: './assets/projets/data-visualisation.png',
+    cover: './assets/projets/data-visualisation/data-visualisation.png',
     images: [
       'https://images.unsplash.com/photo-1698440050363-1697e5f0277c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxkZXNpZ24lMjBzeXN0ZW0lMjBjb21wb25lbnRzfGVufDF8fHx8MTc2NTg3MTU1Nnww&ixlib=rb-4.1.0&q=80&w=1080',
       'https://images.unsplash.com/photo-1602221527282-dabc4778535b?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHx1aSUyMGtpdCUyMGxpYnJhcnl8ZW58MXx8fHwxNzY1OTYxODc1fDA&ixlib=rb-4.1.0&q=80&w=1080',
@@ -125,7 +125,7 @@ export const projects: Project[] = [
     id: '8',
     title: 'Concept d\'application mobile',
     category: 'UI/UX Design',
-    cover: './assets/projets/pokeduel.png',
+    cover: './assets/projets/pokeduel/pokeduel.png',
     images: [
       'https://images.unsplash.com/photo-1698440050363-1697e5f0277c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxkZXNpZ24lMjBzeXN0ZW0lMjBjb21wb25lbnRzfGVufDF8fHx8MTc2NTg3MTU1Nnww&ixlib=rb-4.1.0&q=80&w=1080',
       'https://images.unsplash.com/photo-1602221527282-dabc4778535b?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHx1aSUyMGtpdCUyMGxpYnJhcnl8ZW58MXx8fHwxNzY1OTYxODc1fDA&ixlib=rb-4.1.0&q=80&w=1080',
@@ -143,7 +143,7 @@ export const projects: Project[] = [
     id: '9',
     title: 'Identité Visuelle Startup',
     category: 'UI/UX Design',
-    cover: './assets/projets/glow-pong.png',
+    cover: './assets/projets/glow-pong/glow-pong.png',
     images: [
       'https://images.unsplash.com/photo-1698440050363-1697e5f0277c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxkZXNpZ24lMjBzeXN0ZW0lMjBjb21wb25lbnRzfGVufDF8fHx8MTc2NTg3MTU1Nnww&ixlib=rb-4.1.0&q=80&w=1080',
       'https://images.unsplash.com/photo-1602221527282-dabc4778535b?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHx1aSUyMGtpdCUyMGxpYnJhcnl8ZW58MXx8fHwxNzY1OTYxODc1fDA&ixlib=rb-4.1.0&q=80&w=1080',
@@ -161,7 +161,7 @@ export const projects: Project[] = [
     id: '10',
     title: 'One page pour marque d\'huile d\'olive premium',
     category: 'UI/UX Design',
-    cover: './assets/projets/olive-oil.png',
+    cover: './assets/projets/olive-oil/olive-oil.png',
     images: [
       'https://images.unsplash.com/photo-1698440050363-1697e5f0277c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxkZXNpZ24lMjBzeXN0ZW0lMjBjb21wb25lbnRzfGVufDF8fHx8MTc2NTg3MTU1Nnww&ixlib=rb-4.1.0&q=80&w=1080',
       'https://images.unsplash.com/photo-1602221527282-dabc4778535b?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHx1aSUyMGtpdCUyMGxpYnJhcnl8ZW58MXx8fHwxNzY1OTYxODc1fDA&ixlib=rb-4.1.0&q=80&w=1080',
@@ -179,7 +179,7 @@ export const projects: Project[] = [
     id: '11',
     title: 'vr',
     category: 'Developpement Web & 3D',
-    cover: './assets/projets/vr.png',
+    cover: './assets/projets/vr/vr.png',
     images: [
       'https://images.unsplash.com/photo-1698440050363-1697e5f0277c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxkZXNpZ24lMjBzeXN0ZW0lMjBjb21wb25lbnRzfGVufDF8fHx8MTc2NTg3MTU1Nnww&ixlib=rb-4.1.0&q=80&w=1080',
       'https://images.unsplash.com/photo-1602221527282-dabc4778535b?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHx1aSUyMGtpdCUyMGxpYnJhcnl8ZW58MXx8fHwxNzY1OTYxODc1fDA&ixlib=rb-4.1.0&q=80&w=1080',
@@ -196,7 +196,7 @@ export const projects: Project[] = [
     id: '12',
     title: 'Créer pour une campagne de communication visuelle',
     category: 'UI/UX Design',
-    cover: './assets/projets/digital-cleanup.png',
+    cover: './assets/projets/digital-cleanup/digital-cleanup.png',
     images: [
       'https://images.unsplash.com/photo-1698440050363-1697e5f0277c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxkZXNpZ24lMjBzeXN0ZW0lMjBjb21wb25lbnRzfGVufDF8fHx8MTc2NTg3MTU1Nnww&ixlib=rb-4.1.0&q=80&w=1080',
       'https://images.unsplash.com/photo-1602221527282-dabc4778535b?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHx1aSUyMGtpdCUyMGxpYnJhcnl8ZW58MXx8fHwxNzY1OTYxODc1fDA&ixlib=rb-4.1.0&q=80&w=1080',
