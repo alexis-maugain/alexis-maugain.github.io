@@ -154,21 +154,36 @@ export function ProjectView({
                   transition={{ delay: 0.4 }}
                   className="grid grid-cols-1 md:grid-cols-2 gap-4"
                 >
-                  {project.images.map((img, index) => (
-                    <motion.div
-                      key={index}
-                      initial={{ opacity: 0, scale: 0.95 }}
-                      animate={{ opacity: 1, scale: 1 }}
-                      transition={{ delay: 0.4 + index * 0.1 }}
-                      className="aspect-video rounded-lg overflow-hidden bg-neutral-900"
-                    >
-                      <img 
-                        src={img} 
-                        alt={`${project.title} - Image ${index + 1}`}
-                        className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
-                      />
-                    </motion.div>
-                  ))}
+                  {project.images.map((img, index) => {
+                    const isVideo = img.endsWith('.mp4') || img.endsWith('.webm') || img.endsWith('.mov');
+                    
+                    return (
+                      <motion.div
+                        key={index}
+                        initial={{ opacity: 0, scale: 0.95 }}
+                        animate={{ opacity: 1, scale: 1 }}
+                        transition={{ delay: 0.4 + index * 0.1 }}
+                        className="aspect-video rounded-lg overflow-hidden bg-neutral-900"
+                      >
+                        {isVideo ? (
+                          <video 
+                            src={img}
+                            controls
+                            className="w-full h-full object-cover"
+                            preload="metadata"
+                          >
+                            Votre navigateur ne supporte pas la lecture de vidéos.
+                          </video>
+                        ) : (
+                          <img 
+                            src={img} 
+                            alt={`${project.title} - Image ${index + 1}`}
+                            className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
+                          />
+                        )}
+                      </motion.div>
+                    );
+                  })}
                 </motion.section>
 
                 {/* Problem */}

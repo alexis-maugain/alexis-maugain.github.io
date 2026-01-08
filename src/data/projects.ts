@@ -10,7 +10,7 @@ export const projects: Project[] = [
     images: [
       './assets/projets/fiefdesvins/fiefdesvins.png',
       './assets/projets/fiefdesvins/hero.png',
-      './assets/projets/fiefdesvins/pallette.png',
+      './assets/projets/fiefdesvins/contact.png',
       './assets/projets/fiefdesvins/livraison-entreprise.png',
     ],
     role: 'Lead UX/UI Designer',
@@ -213,10 +213,29 @@ export const projects: Project[] = [
       './assets/projets/digital-cleanup/Newsletter.png',
       './assets/projets/digital-cleanup/wireframe.png',
       './assets/projets/digital-cleanup/Footer.png',
+      './assets/projets/digital-cleanup/motion_format-desktop.mp4',
     ],
     role: 'UI/UX Designer',
     tools: ['Figma', 'Adobe Illustrator', 'Adobe Photoshop'],
     description: 'Le prochain événement du Digital Clean Up aura lieu le 25 mars 2025. Pour l\'occasion, l\'organisation souhaite cibler les moins de 25 ans. Il nous a donc été demandé de promouvoir cette action.',
+    problem: '',
+    process: '',
+    color: '#3aa217ff'
+  },
+
+    {
+    id: '13',
+    title: 'Faire une vidéo promotionnelle',
+    category: 'Motion Design',
+    cover: './assets/projets/carrefour-club/cover.webp',
+    images: [
+      './assets/projets/carrefour-club/storyboard_versions.png',
+      './assets/projets/carrefour-club/storyboard_final.png',
+      './assets/projets/carrefour-club/motion_format-desktop.mp4',
+    ],
+    role: 'Motion Designer',
+    tools: ['Adobe Illustrator', 'After Effects', 'Premiere Pro'],
+    description: 'Création d\'une vidéo promotionnelle pour le programme de fidélité "Carrefour Club". La vidéo vise à informer les clients des avantages exclusifs offerts par le programme et à encourager l\'inscription.',
     problem: '',
     process: '',
     color: '#3aa217ff'
@@ -246,6 +265,6 @@ export const playlists: Playlist[] = [
     id: 'motion',
     name: 'Motion & 3D',
     icon: 'film',
-    projects: ['3', '11', '12']
+    projects: ['3', '11', '12', '13']
   }
 ];
