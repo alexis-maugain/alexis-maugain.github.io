@@ -163,7 +163,7 @@ export default function App() {
               onClick={() => setActiveView('about')}
               className="w-10 h-10 rounded-full bg-gradient-to-br from-blue-400 to-blue-600 flex items-center justify-center text-white flex-shrink-0 cursor-pointer"
             >
-              <img src="./assets/logo.svg" alt="Profile" className="w-8 h-8 rounded-full object-cover" />
+              <img src="./assets/logo.png" alt="Profile" className="w-8 h-8 rounded-full object-cover" />
             </motion.button>
 
             {/* Filter Pills */}
@@ -263,9 +263,9 @@ export default function App() {
           animate={{ opacity: 1, y: 0 }}
           className="max-w-4xl"
         >
-          <div className="mb-8 flex flex-col md:flex-row items-start md:items-center gap-6">
+          <div className="mb-8 flex items-start md:items-center gap-6">
             <div className="w-32 h-32 md:w-40 md:h-40 rounded-full bg-gradient-to-br from-green-400 to-green-600 flex items-center justify-center flex-shrink-0">
-              <img src="./assets/moi.webp" alt="Alexis MAUGAIN" className="w-32 h-32 md:w-40 md:h-40 rounded-full object-cover" />
+              <img src="./assets/moi.png" alt="Alexis MAUGAIN" className="w-32 h-32 md:w-40 md:h-40 rounded-full object-cover" />
             </div>
             <div>
               <h1 className="text-white mb-4 text-[32px] md:text-[40px]">Alexis MAUGAIN</h1>
