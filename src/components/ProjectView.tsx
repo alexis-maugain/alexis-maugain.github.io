@@ -1,4 +1,5 @@
-import { X, Play, Pause, Heart, ExternalLink } from 'lucide-react';
+import { useState } from 'react';
+import { X, Play, Pause, Heart, ExternalLink, ChevronLeft, ChevronRight } from 'lucide-react';
 import { Project } from '../types';
 
 interface ProjectViewProps {
@@ -20,6 +21,30 @@ export function ProjectView({
   onToggleFavorite,
   isFavorite 
 }: ProjectViewProps) {
+  const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
+
+  // Filter only images (not videos) for the lightbox
+  const imageOnly = project?.images.filter(
+    (img) => !img.endsWith('.mp4') && !img.endsWith('.webm') && !img.endsWith('.mov')
+  ) ?? [];
+
+  const openLightbox = (imgSrc: string) => {
+    const idx = imageOnly.indexOf(imgSrc);
+    if (idx !== -1) setLightboxIndex(idx);
+  };
+
+  const closeLightbox = () => setLightboxIndex(null);
+
+  const goToPrev = () => {
+    if (lightboxIndex === null) return;
+    setLightboxIndex((lightboxIndex - 1 + imageOnly.length) % imageOnly.length);
+  };
+
+  const goToNext = () => {
+    if (lightboxIndex === null) return;
+    setLightboxIndex((lightboxIndex + 1) % imageOnly.length);
+  };
+
   if (!project || !isOpen) return null;
 
   return (
@@ -149,8 +174,9 @@ export function ProjectView({
                       <img 
                         src={img} 
                         alt={`${project.title} - Image ${index + 1}`}
-                        className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
+                        className="w-full h-full object-cover hover:scale-105 transition-transform duration-300 cursor-pointer"
                         loading="lazy"
+                        onClick={() => openLightbox(img)}
                       />
                     )}
                   </div>
@@ -172,6 +198,61 @@ export function ProjectView({
           </div>
         </div>
       </div>
+
+      {/* Lightbox */}
+      {lightboxIndex !== null && (
+        <div
+          className="fixed inset-0 z-[100] bg-black/95 animate-fade-in"
+          onClick={closeLightbox}
+        >
+          {/* Close button */}
+          <button
+            onClick={closeLightbox}
+            className="absolute top-6 right-6 w-10 h-10 bg-black/60 hover:bg-black hover:scale-110 active:scale-95 rounded-full flex items-center justify-center text-white z-10 cursor-pointer transition-all"
+          >
+            <X size={24} />
+          </button>
+
+          {/* Previous button */}
+          {imageOnly.length > 1 && (
+            <button
+              onClick={(e) => { e.stopPropagation(); goToPrev(); }}
+              className="absolute left-4 md:left-8 w-10 h-10 bg-black/60 hover:bg-black hover:scale-110 active:scale-95 rounded-full flex items-center justify-center text-white z-10 cursor-pointer transition-all"
+              style={{ top: '50%', transform: 'translateY(-50%)' }}
+            >
+              <ChevronLeft size={24} />
+            </button>
+          )}
+
+          {/* Next button */}
+          {imageOnly.length > 1 && (
+            <button
+              onClick={(e) => { e.stopPropagation(); goToNext(); }}
+              className="absolute right-4 md:right-8 w-10 h-10 bg-black/60 hover:bg-black hover:scale-110 active:scale-95 rounded-full flex items-center justify-center text-white z-10 cursor-pointer transition-all"
+              style={{ top: '50%', transform: 'translateY(-50%)' }}
+            >
+              <ChevronRight size={24} />
+            </button>
+          )}
+
+          {/* Image (centered) */}
+          <div className="w-full h-full flex items-center justify-center px-16">
+            <img
+              src={imageOnly[lightboxIndex]}
+              alt={`${project.title} - Image ${lightboxIndex + 1}`}
+              className="max-w-[90vw] max-h-[90vh] object-contain rounded-lg shadow-2xl animate-fade-in-scale"
+              onClick={(e) => e.stopPropagation()}
+            />
+          </div>
+
+          {/* Image counter */}
+          {imageOnly.length > 1 && (
+            <div className="absolute bottom-6 left-1/2 -translate-x-1/2 text-white/70 text-sm">
+              {lightboxIndex + 1} / {imageOnly.length}
+            </div>
+          )}
+        </div>
+      )}
     </div>
   );
 }

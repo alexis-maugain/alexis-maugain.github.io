@@ -32,13 +32,6 @@ export function PlaylistCard({ title, cover, gradient, onClick }: PlaylistCardPr
       <div className="flex-1 px-4 text-left">
         <h3 className="text-white truncate">{title}</h3>
       </div>
-
-      {/* Play button on hover */}
-      <div
-        className="absolute right-2 w-12 h-12 bg-green-500 rounded-full flex items-center justify-center shadow-lg opacity-0 group-hover:opacity-100 transition-all duration-200"
-      >
-        <Play size={20} fill="black" className="text-black ml-0.5" />
-      </div>
     </button>
   );
 }
