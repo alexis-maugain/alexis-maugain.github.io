@@ -224,6 +224,7 @@ export function ProjectView({
             </button>
           )}
 
+
           {/* Next button */}
           {imageOnly.length > 1 && (
             <button
