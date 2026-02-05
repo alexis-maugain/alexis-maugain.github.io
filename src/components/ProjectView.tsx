@@ -241,7 +241,8 @@ export function ProjectView({
             <img
               src={imageOnly[lightboxIndex]}
               alt={`${project.title} - Image ${lightboxIndex + 1}`}
-              className="max-w-[90vw] max-h-[90vh] object-contain rounded-lg shadow-2xl animate-fade-in-scale"
+              className="object-contain rounded-lg shadow-2xl animate-fade-in-scale"
+              style={{ maxWidth: '85vw', maxHeight: '85vh' }}
               onClick={(e) => e.stopPropagation()}
             />
           </div>
