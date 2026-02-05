@@ -1,6 +1,6 @@
 import { Play, Heart } from 'lucide-react';
 import { Project } from '../types';
-import { motion } from 'motion/react';
+import { memo } from 'react';
 
 interface ProjectCardProps {
   project: Project;
@@ -10,13 +10,10 @@ interface ProjectCardProps {
   isPlaying: boolean;
 }
 
-export function ProjectCard({ project, onPlay, onToggleFavorite, isFavorite, isPlaying }: ProjectCardProps) {
+export const ProjectCard = memo(function ProjectCard({ project, onPlay, onToggleFavorite, isFavorite, isPlaying }: ProjectCardProps) {
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 20 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.3 }}
-      className="group relative bg-neutral-900 rounded-lg p-4 hover:bg-neutral-800 transition-all cursor-pointer"
+    <div
+      className="group relative bg-neutral-900 rounded-lg p-4 hover:bg-neutral-800 transition-colors duration-200 cursor-pointer"
       onClick={() => onPlay(project)}
     >
       {/* Cover Image */}
@@ -25,28 +22,23 @@ export function ProjectCard({ project, onPlay, onToggleFavorite, isFavorite, isP
           src={project.cover} 
           alt={project.title}
           className="w-full h-full object-cover"
+          loading="lazy"
         />
         
         {/* Play Button Overlay */}
-        <motion.div 
-          initial={{ opacity: 0, y: 10 }}
-          whileHover={{ opacity: 1, y: 0 }}
-          className="absolute inset-0 bg-black/40 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity"
+        <div 
+          className="absolute inset-0 bg-black/40 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-200"
         >
-          <motion.button
-            whileHover={{ scale: 1.1 }}
-            whileTap={{ scale: 0.95 }}
-            className={`w-14 h-14 rounded-full flex items-center justify-center shadow-xl cursor-pointer ${
-              isPlaying ? 'bg-green-500' : 'bg-green-500'
-            }`}
+          <button
+            className="w-14 h-14 rounded-full flex items-center justify-center shadow-xl cursor-pointer bg-green-500 hover:scale-105 active:scale-95 transition-transform duration-150"
             onClick={(e) => {
               e.stopPropagation();
               onPlay(project);
             }}
           >
             <Play size={24} fill="black" className="text-black ml-0.5" />
-          </motion.button>
-        </motion.div>
+          </button>
+        </div>
 
         {/* Favorite Button */}
         <button
@@ -74,21 +66,14 @@ export function ProjectCard({ project, onPlay, onToggleFavorite, isFavorite, isP
       {isPlaying && (
         <div className="absolute bottom-4 right-4 flex gap-0.5">
           {[0, 1, 2].map((i) => (
-            <motion.div
+            <div
               key={i}
-              className="w-1 bg-green-500 rounded-full"
-              animate={{
-                height: ['8px', '16px', '8px'],
-              }}
-              transition={{
-                duration: 0.8,
-                repeat: Infinity,
-                delay: i * 0.2,
-              }}
+              className="w-1 bg-green-500 rounded-full animate-pulse"
+              style={{ height: '12px', animationDelay: `${i * 0.2}s` }}
             />
           ))}
         </div>
       )}
-    </motion.div>
+    </div>
   );
-}
+});

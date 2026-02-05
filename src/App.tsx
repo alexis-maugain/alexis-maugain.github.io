@@ -1,5 +1,4 @@
-import { useState, useEffect } from 'react';
-import { motion } from 'motion/react';
+import { useState, useEffect, useMemo, useCallback } from 'react';
 import { Download, Mail, Github, MapPin, Linkedin } from 'lucide-react';
 import { Sidebar } from './components/Sidebar';
 import { Player } from './components/Player';
@@ -8,7 +7,6 @@ import { ProjectView } from './components/ProjectView';
 import { PlaylistHeader } from './components/PlaylistHeader';
 import { ProjectRow } from './components/ProjectRow';
 import { PlaylistCard } from './components/PlaylistCard';
-import { ProfileCard } from './components/ProfileCard';
 import { LoadingScreen } from './components/LoadingScreen';
 import { WrappedBanner } from './components/WrappedBanner';
 import { WrappedModal } from './components/WrappedModal';
@@ -24,10 +22,9 @@ export default function App() {
   const [isPlaying, setIsPlaying] = useState(false);
   const [favoriteProjects, setFavoriteProjects] = useState<string[]>([]);
   const [isProjectViewOpen, setIsProjectViewOpen] = useState(false);
-  const [selectedCategory, setSelectedCategory] = useState('Tout');
   const [isWrappedModalOpen, setIsWrappedModalOpen] = useState(false);
 
-  const handlePlayProject = (project: Project) => {
+  const handlePlayProject = useCallback((project: Project) => {
     setCurrentProject(project);
     setIsPlaying(true);
     setIsProjectViewOpen(false);
@@ -36,37 +33,21 @@ export default function App() {
     setTimeout(() => {
       setIsProjectViewOpen(true);
     }, 1000);
-  };
+  }, []);
 
-  const handleTogglePlay = () => {
-    setIsPlaying(!isPlaying);
-  };
+  const handleTogglePlay = useCallback(() => {
+    setIsPlaying((prev) => !prev);
+  }, []);
 
-  const handleToggleFavorite = (projectId: string) => {
+  const handleToggleFavorite = useCallback((projectId: string) => {
     setFavoriteProjects((prev) =>
       prev.includes(projectId)
         ? prev.filter((id) => id !== projectId)
         : [...prev, projectId]
     );
-  };
+  }, []);
 
-  const handlePrevious = () => {
-    if (!currentProject) return;
-    const currentPlaylist = getFilteredProjects();
-    const currentIndex = currentPlaylist.findIndex((p) => p.id === currentProject.id);
-    const prevIndex = currentIndex > 0 ? currentIndex - 1 : currentPlaylist.length - 1;
-    setCurrentProject(currentPlaylist[prevIndex]);
-  };
-
-  const handleNext = () => {
-    if (!currentProject) return;
-    const currentPlaylist = getFilteredProjects();
-    const currentIndex = currentPlaylist.findIndex((p) => p.id === currentProject.id);
-    const nextIndex = currentIndex < currentPlaylist.length - 1 ? currentIndex + 1 : 0;
-    setCurrentProject(currentPlaylist[nextIndex]);
-  };
-
-  const getFilteredProjects = (): Project[] => {
+  const getFilteredProjects = useCallback((): Project[] => {
     if (activeView === 'all') {
       return projects;
     }
@@ -78,7 +59,25 @@ export default function App() {
       return projects.filter((p) => playlist.projects.includes(p.id));
     }
     return projects;
-  };
+  }, [activeView, favoriteProjects]);
+
+  const handlePrevious = useCallback(() => {
+    if (!currentProject) return;
+    const currentPlaylist = getFilteredProjects();
+    const currentIndex = currentPlaylist.findIndex((p) => p.id === currentProject.id);
+    const prevIndex = currentIndex > 0 ? currentIndex - 1 : currentPlaylist.length - 1;
+    setCurrentProject(currentPlaylist[prevIndex]);
+  }, [currentProject, getFilteredProjects]);
+
+  const handleNext = useCallback(() => {
+    if (!currentProject) return;
+    const currentPlaylist = getFilteredProjects();
+    const currentIndex = currentPlaylist.findIndex((p) => p.id === currentProject.id);
+    const nextIndex = currentIndex < currentPlaylist.length - 1 ? currentIndex + 1 : 0;
+    setCurrentProject(currentPlaylist[nextIndex]);
+  }, [currentProject, getFilteredProjects]);
+
+
 
   const getViewTitle = (): string => {
     if (activeView === 'home') return 'Accueil';
@@ -120,32 +119,34 @@ export default function App() {
     return '#1DB954, #1ed760';
   };
 
-  const filteredProjects = getFilteredProjects();
+  const filteredProjects = useMemo(() => getFilteredProjects(), [getFilteredProjects]);
 
-  const renderContent = () => {
-    if (activeView === 'home') {
-      // Page d'accueil avec sections multiples
-      const recentProjects = [...projects].slice(0, 6);
-      const trendingProjects = [projects[1], projects[0], projects[3], projects[2], projects[4], projects[5]];
-      const topProjects = [...projects].sort((a, b) => b.id.localeCompare(a.id)).slice(0, 6);
-      const uiuxProjects = projects.filter(p => p.category.includes('UI/UX')).slice(0, 6);
-
-      const playlistsData = [
-        { id: 'all', title: 'Tous les singles', gradient: '#EC4899, #8B5CF6', cover: projects[4]?.cover },
-        { id: 'favorites', title: 'Mes Favoris', gradient: '#10B981, #059669', cover: projects[5]?.cover },
-        { id: 'top-france', title: 'Top France', gradient: '#1DB954, #1ed760', cover: projects[0]?.cover },
-        { id: 'ui-ux', title: 'UX/UI Design', gradient: '#9333EA, #C026D3', cover: projects[1]?.cover },
-        { id: 'web', title: 'Web', gradient: '#3B82F6, #06B6D4', cover: projects[2]?.cover },
-        { id: 'motion', title: 'Motion & 3D', gradient: '#F59E0B, #EF4444', cover: projects[3]?.cover },
-      ];
-
-      const categories = [
+  // Mémoïser les projets pour la page d'accueil
+  const recentProjects = useMemo(() => projects.slice(0, 6), []);
+  const trendingProjects = useMemo(() => [projects[1], projects[0], projects[3], projects[2], projects[4], projects[5]].filter(Boolean), []);
+  const topProjects = useMemo(() => [...projects].sort((a, b) => b.id.localeCompare(a.id)).slice(0, 6), []);
+  const uiuxProjects = useMemo(() => projects.filter(p => p.category.includes('UI/UX')).slice(0, 6), []);
+  
+  const playlistsData = useMemo(() => [
+    { id: 'all', title: 'Tous les singles', gradient: '#EC4899, #8B5CF6', cover: projects[4]?.cover },
+    { id: 'favorites', title: 'Mes Favoris', gradient: '#10B981, #059669', cover: projects[5]?.cover },
+    { id: 'top-france', title: 'Top France', gradient: '#1DB954, #1ed760', cover: projects[0]?.cover },
+    { id: 'ui-ux', title: 'UX/UI Design', gradient: '#9333EA, #C026D3', cover: projects[1]?.cover },
+    { id: 'web', title: 'Web', gradient: '#3B82F6, #06B6D4', cover: projects[2]?.cover },
+    { id: 'motion', title: 'Motion & 3D', gradient: '#F59E0B, #EF4444', cover: projects[3]?.cover },
+  ], []);
+  
+  const categories = useMemo(() => [
         { label: 'Tout', view: 'all' },
         { label: 'UI/UX', view: 'ui-ux' },
         { label: 'Web', view: 'web' },
         { label: 'Motion', view: 'motion' },
         { label: '3D', view: 'motion' }
-      ];
+  ], []);
+
+  const renderContent = () => {
+    if (activeView === 'home') {
+      // Page d'accueil avec sections multiples
       
       return (
         <div>
@@ -155,48 +156,36 @@ export default function App() {
           {/* Top Bar with Avatar and Filters */}
           <div className="flex flex-wrap items-center gap-2 mb-8">
             {/* Profile Avatar */}
-            <motion.button
-              initial={{ opacity: 0, scale: 0.8 }}
-              animate={{ opacity: 1, scale: 1 }}
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
+            <button
               onClick={() => setActiveView('about')}
-              className="w-10 h-10 rounded-full bg-gradient-to-br from-blue-400 to-blue-600 flex items-center justify-center text-white flex-shrink-0 cursor-pointer"
+              className="w-10 h-10 rounded-full bg-gradient-to-br from-blue-400 to-blue-600 flex items-center justify-center text-white flex-shrink-0 cursor-pointer hover:scale-105 active:scale-95 transition-transform duration-150"
             >
-              <img src="./assets/logo.png" alt="Profile" className="w-8 h-8 rounded-full object-cover" />
-            </motion.button>
+              <img src="./assets/logo.png" alt="Profile" className="w-8 h-8 rounded-full object-cover" loading="lazy" />
+            </button>
 
             {/* Filter Pills */}
-            {categories.map((category, index) => (
-              <motion.button
+            {categories.map((category) => (
+              <button
                 key={category.label}
-                initial={{ opacity: 0, x: -20 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ delay: index * 0.05 }}
                 onClick={() => setActiveView(category.view)}
                 className="px-4 md:px-5 py-2 rounded-full whitespace-nowrap transition-all bg-neutral-800 text-white hover:bg-neutral-700 text-sm md:text-base flex-shrink-0 cursor-pointer"
               >
                 {category.label}
-              </motion.button>
+              </button>
             ))}
           </div>
 
           {/* Playlists Grid */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-3 mb-10">
-            {playlistsData.map((playlist, index) => (
-              <motion.div
-                key={playlist.id}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: index * 0.05 }}
-              >
+            {playlistsData.map((playlist) => (
+              <div key={playlist.id}>
                 <PlaylistCard
                   title={playlist.title}
                   cover={playlist.cover}
                   gradient={playlist.gradient}
                   onClick={() => setActiveView(playlist.id)}
                 />
-              </motion.div>
+              </div>
             ))}
           </div>
 
@@ -258,14 +247,12 @@ export default function App() {
     
     if (activeView === 'about') {
       return (
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          className="max-w-4xl"
+        <div
+          className="max-w-4xl animate-fade-in"
         >
           <div className="mb-8 flex items-start md:items-center gap-6">
             <div className="w-32 h-32 md:w-40 md:h-40 rounded-full bg-gradient-to-br from-green-400 to-green-600 flex items-center justify-center flex-shrink-0">
-              <img src="./assets/moi.png" alt="Alexis MAUGAIN" className="w-32 h-32 md:w-40 md:h-40 rounded-full object-cover" />
+              <img src="./assets/moi.png" alt="Alexis MAUGAIN" className="w-32 h-32 md:w-40 md:h-40 rounded-full object-cover" loading="lazy" />
             </div>
             <div>
               <h1 className="text-white mb-4 text-[32px] md:text-[40px]">Alexis MAUGAIN</h1>
@@ -309,16 +296,14 @@ export default function App() {
               </a>
             </div>
           </div>
-        </motion.div>
+        </div>
       );
     }
 
     if (activeView === 'contact') {
       return (
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          className="max-w-2xl"
+        <div
+          className="max-w-2xl animate-fade-in"
         >
           <h1 className="text-white mb-6 text-6xl">Contact</h1>
           <p className="text-xl text-neutral-300 mb-12">
@@ -379,7 +364,7 @@ export default function App() {
               </div>
             </div>
           </div>
-        </motion.div>
+        </div>
       );
     }
 
@@ -403,21 +388,15 @@ export default function App() {
           </div>
         ) : (
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6">
-            {filteredProjects.map((project, index) => (
-              <motion.div
+            {filteredProjects.map((project) => (
+              <ProjectCard
                 key={project.id}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: index * 0.05 }}
-              >
-                <ProjectCard
-                  project={project}
-                  onPlay={handlePlayProject}
-                  onToggleFavorite={handleToggleFavorite}
-                  isFavorite={favoriteProjects.includes(project.id)}
-                  isPlaying={currentProject?.id === project.id && isPlaying}
-                />
-              </motion.div>
+                project={project}
+                onPlay={handlePlayProject}
+                onToggleFavorite={handleToggleFavorite}
+                isFavorite={favoriteProjects.includes(project.id)}
+                isPlaying={currentProject?.id === project.id && isPlaying}
+              />
             ))}
           </div>
         )}

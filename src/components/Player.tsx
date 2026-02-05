@@ -1,7 +1,6 @@
 import { Play, Pause, SkipBack, SkipForward, Heart, Maximize2 } from 'lucide-react';
 import { Project } from '../types';
-import { motion } from 'motion/react';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, memo } from 'react';
 
 interface PlayerProps {
   currentProject: Project | null;
@@ -14,7 +13,7 @@ interface PlayerProps {
   onExpand: () => void;
 }
 
-export function Player({ 
+export const Player = memo(function Player({ 
   currentProject, 
   isPlaying, 
   onTogglePlay, 
@@ -31,9 +30,9 @@ export function Player({
       const interval = setInterval(() => {
         setProgress((prev) => {
           if (prev >= 100) return 0;
-          return prev + 0.5;
+          return prev + 0.56;
         });
-      }, 100);
+      }, 1000);
       return () => clearInterval(interval);
     }
   }, [isPlaying, currentProject]);
@@ -43,15 +42,13 @@ export function Player({
   }
 
   return (
-    <motion.div
-      initial={{ y: 100 }}
-      animate={{ y: 0 }}
-      className="fixed bottom-0 left-0 right-0 bg-neutral-950 border-t border-neutral-800 z-[60] md:bottom-0 bottom-16"
+    <div
+      className="fixed bottom-0 left-0 right-0 bg-neutral-950 border-t border-neutral-800 z-[60] md:bottom-0 bottom-16 animate-slide-up"
     >
       {/* Progress Bar */}
       <div className="relative h-1 bg-neutral-800 group cursor-pointer">
-        <motion.div
-          className="absolute h-full bg-green-500"
+        <div
+          className="absolute h-full bg-green-500 transition-[width] duration-1000 linear"
           style={{ width: `${progress}%` }}
         />
         <div 
@@ -68,12 +65,12 @@ export function Player({
       <div className="flex items-center justify-between px-4 py-3">
         {/* Current Project Info */}
         <div className="flex items-center gap-4 flex-1 min-w-0">
-          <motion.img
+          <img
             src={currentProject.cover}
             alt={currentProject.title}
-            className="w-14 h-14 rounded-md object-cover cursor-pointer hidden md:block"
-            whileHover={{ scale: 1.05 }}
+            className="w-14 h-14 rounded-md object-cover cursor-pointer hidden md:block hover:scale-105 transition-transform"
             onClick={onExpand}
+            loading="lazy"
           />
           <div className="min-w-0">
             <h4 className="text-white truncate cursor-pointer hover:underline text-sm md:text-base" onClick={onExpand}>
@@ -81,47 +78,39 @@ export function Player({
             </h4>
             <p className="text-xs md:text-sm text-neutral-400 truncate">{currentProject.category}</p>
           </div>
-          <motion.button
-            whileHover={{ scale: 1.1 }}
-            whileTap={{ scale: 0.95 }}
+          <button
             onClick={() => onToggleFavorite(currentProject.id)}
-            className={`hidden md:block cursor-pointer ${
+            className={`hidden md:block cursor-pointer hover:scale-110 active:scale-95 transition-transform ${
               isFavorite ? 'text-green-500' : 'text-neutral-400 hover:text-white'
             } transition-colors`}
           >
             <Heart size={20} fill={isFavorite ? 'currentColor' : 'none'} />
-          </motion.button>
+          </button>
         </div>
 
         {/* Player Controls */}
         <div className="flex flex-col items-center gap-2 flex-1">
           <div className="flex items-center gap-4">
-            <motion.button
-              whileHover={{ scale: 1.1 }}
-              whileTap={{ scale: 0.95 }}
+            <button
               onClick={onPrevious}
-              className="text-neutral-400 hover:text-white transition-colors cursor-pointer"
+              className="text-neutral-400 hover:text-white hover:scale-110 active:scale-95 transition-all cursor-pointer"
             >
               <SkipBack size={20} />
-            </motion.button>
+            </button>
             
-            <motion.button
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
+            <button
               onClick={onTogglePlay}
-              className="w-10 h-10 bg-white rounded-full flex items-center justify-center text-black hover:scale-105 transition-transform cursor-pointer"
+              className="w-10 h-10 bg-white rounded-full flex items-center justify-center text-black hover:scale-105 active:scale-95 transition-transform cursor-pointer"
             >
               {isPlaying ? <Pause size={20} fill="black" /> : <Play size={20} fill="black" className="ml-0.5" />}
-            </motion.button>
+            </button>
             
-            <motion.button
-              whileHover={{ scale: 1.1 }}
-              whileTap={{ scale: 0.95 }}
+            <button
               onClick={onNext}
-              className="text-neutral-400 hover:text-white transition-colors cursor-pointer"
+              className="text-neutral-400 hover:text-white hover:scale-110 active:scale-95 transition-all cursor-pointer"
             >
               <SkipForward size={20} />
-            </motion.button>
+            </button>
           </div>
           
           {/* Progress Time */}
@@ -134,24 +123,14 @@ export function Player({
 
         {/* Right Controls */}
         <div className="flex items-center justify-end gap-2 flex-1">
-          <motion.button
-            animate={{ 
-              scale: [1, 1.1, 1],
-            }}
-            transition={{ 
-              duration: 2, 
-              repeat: Infinity,
-              ease: "easeInOut"
-            }}
-            whileHover={{ scale: 1.2 }}
-            whileTap={{ scale: 0.95 }}
+          <button
             onClick={onExpand}
-            className="bg-green-500 hover:bg-green-400 rounded-full p-2 transition-colors shadow-lg shadow-green-500/50 cursor-pointer"
+            className="bg-green-500 hover:bg-green-400 hover:scale-120 active:scale-95 rounded-full p-2 transition-all shadow-lg shadow-green-500/50 cursor-pointer"
           >
             <Maximize2 size={20} className="text-black" />
-          </motion.button>
+          </button>
         </div>
       </div>
-    </motion.div>
+    </div>
   );
-}
+});

@@ -1,5 +1,4 @@
-import { motion } from 'motion/react';
-import { Music2, Play } from 'lucide-react';
+import { Music2 } from 'lucide-react';
 
 interface ProfileCardProps {
   onViewAbout: () => void;
@@ -7,10 +6,8 @@ interface ProfileCardProps {
 
 export function ProfileCard({ onViewAbout }: ProfileCardProps) {
   return (
-    <motion.div
-      initial={{ opacity: 0, x: -20 }}
-      animate={{ opacity: 1, x: 0 }}
-      className="bg-gradient-to-br from-green-500 to-green-600 rounded-lg p-6 text-white sticky top-0"
+    <div
+      className="bg-gradient-to-br from-green-500 to-green-600 rounded-lg p-6 text-white sticky top-0 animate-fade-in"
     >
       <div className="flex flex-col items-center text-center">
         {/* Profile Image */}
@@ -41,15 +38,13 @@ export function ProfileCard({ onViewAbout }: ProfileCardProps) {
         </p>
 
         {/* View Profile Button */}
-        <motion.button
-          whileHover={{ scale: 1.05 }}
-          whileTap={{ scale: 0.95 }}
+        <button
           onClick={onViewAbout}
-          className="w-full bg-black/30 hover:bg-black/40 text-white py-3 rounded-full transition-colors flex items-center justify-center gap-2 cursor-pointer"
+          className="w-full bg-black/30 hover:bg-black/40 text-white py-3 rounded-full transition-all flex items-center justify-center gap-2 cursor-pointer hover:scale-105 active:scale-95"
         >
           <span>Voir mon profil</span>
-        </motion.button>
+        </button>
       </div>
-    </motion.div>
+    </div>
   );
 }

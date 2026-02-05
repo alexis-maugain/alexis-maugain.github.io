@@ -1,15 +1,11 @@
-import { motion } from 'motion/react';
-
 interface WrappedBannerProps {
   onStart: () => void;
 }
 
 export function WrappedBanner({ onStart }: WrappedBannerProps) {
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 20 }}
-      animate={{ opacity: 1, y: 0 }}
-      className="relative bg-gradient-to-br from-neutral-100 to-neutral-200 rounded-2xl p-8 md:p-12 overflow-hidden mb-10 cursor-pointer group"
+    <div
+      className="relative bg-gradient-to-br from-neutral-100 to-neutral-200 rounded-2xl p-8 md:p-12 overflow-hidden mb-10 cursor-pointer group animate-fade-in"
       onClick={onStart}
     >
       {/* Decorative Elements */}
@@ -61,40 +57,27 @@ export function WrappedBanner({ onStart }: WrappedBannerProps) {
 
       {/* Content */}
       <div className="relative z-10">
-        <motion.h2
-          initial={{ opacity: 0, y: 10 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.2 }}
+        <h2
           className="text-black mb-3"
           style={{ fontSize: '2.5rem', fontWeight: 700 }}
         >
           Mon Wrapped 2025
-        </motion.h2>
+        </h2>
         
-        <motion.p
-          initial={{ opacity: 0, y: 10 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.3 }}
-          className="text-black/70 mb-6 text-lg"
-        >
+        <p className="text-black/70 mb-6 text-lg">
           Revivez mes créations marquantes de l'année.
-        </motion.p>
+        </p>
 
-        <motion.button
-          initial={{ opacity: 0, scale: 0.9 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ delay: 0.4 }}
-          whileHover={{ scale: 1.05 }}
-          whileTap={{ scale: 0.95 }}
-          className="bg-red-500 hover:bg-red-600 text-white px-8 py-3 rounded-full transition-colors shadow-lg cursor-pointer"
+        <button
+          className="bg-red-500 hover:bg-red-600 text-white px-8 py-3 rounded-full transition-all shadow-lg cursor-pointer hover:scale-105 active:scale-95"
           style={{ fontSize: '1.1rem', fontWeight: 600 }}
         >
           C'est parti !
-        </motion.button>
+        </button>
       </div>
 
       {/* Hover effect */}
       <div className="absolute inset-0 bg-black/0 group-hover:bg-black/5 transition-colors rounded-2xl" />
-    </motion.div>
+    </div>
   );
 }

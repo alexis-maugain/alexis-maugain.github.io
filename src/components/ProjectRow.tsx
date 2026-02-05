@@ -1,7 +1,7 @@
 import { Project } from '../types';
 import { ProjectCard } from './ProjectCard';
 import { ChevronRight } from 'lucide-react';
-import { motion } from 'motion/react';
+import { memo } from 'react';
 
 interface ProjectRowProps {
   title: string;
@@ -14,7 +14,7 @@ interface ProjectRowProps {
   onViewAll?: () => void;
 }
 
-export function ProjectRow({
+export const ProjectRow = memo(function ProjectRow({
   title,
   projects,
   onPlayProject,
@@ -27,14 +27,12 @@ export function ProjectRow({
   return (
     <div className="mb-10">
       <div className="flex items-center justify-between mb-4">
-        <motion.h2
-          initial={{ opacity: 0, x: -20 }}
-          animate={{ opacity: 1, x: 0 }}
+        <h2
           className="text-white hover:underline cursor-pointer text-lg md:text-2xl"
           onClick={onViewAll}
         >
           {title}
-        </motion.h2>
+        </h2>
         {onViewAll && (
           <button
             onClick={onViewAll}
@@ -47,23 +45,17 @@ export function ProjectRow({
       </div>
 
       <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-4">
-        {projects.map((project, index) => (
-          <motion.div
+        {projects.map((project) => (
+          <ProjectCard
             key={project.id}
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: index * 0.05 }}
-          >
-            <ProjectCard
-              project={project}
-              onPlay={onPlayProject}
-              onToggleFavorite={onToggleFavorite}
-              isFavorite={favoriteProjects.includes(project.id)}
-              isPlaying={currentProjectId === project.id && isPlaying}
-            />
-          </motion.div>
+            project={project}
+            onPlay={onPlayProject}
+            onToggleFavorite={onToggleFavorite}
+            isFavorite={favoriteProjects.includes(project.id)}
+            isPlaying={currentProjectId === project.id && isPlaying}
+          />
         ))}
       </div>
     </div>
   );
-}
+});
