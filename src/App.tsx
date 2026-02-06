@@ -250,16 +250,21 @@ export default function App() {
         <div
           className="max-w-4xl animate-fade-in"
         >
-          <div className="mb-8 flex items-start md:items-center gap-6">
-            <div className="w-32 h-32 md:w-40 md:h-40 rounded-full bg-gradient-to-br from-green-400 to-green-600 flex items-center justify-center flex-shrink-0">
-              <img src="./assets/moi.webp" alt="Alexis MAUGAIN" className="w-32 h-32 md:w-40 md:h-40 rounded-full object-cover" loading="lazy" />
+          <div className="mb-8">
+            <div className="flex items-center gap-4 md:gap-6 mb-4 md:mb-0">
+              <div className="w-32 h-32 md:w-40 md:h-40 rounded-full bg-gradient-to-br from-green-400 to-green-600 flex items-center justify-center flex-shrink-0">
+                <img src="./assets/moi.webp" alt="Alexis MAUGAIN" className="w-32 h-32 md:w-40 md:h-40 rounded-full object-cover" loading="lazy" />
+              </div>
+              <div className="md:flex-1">
+                <h1 className="text-white mb-0 md:mb-4 text-[32px] md:text-[40px]">Alexis MAUGAIN</h1>
+                <p className="hidden md:block text-lg md:text-xl text-neutral-300">
+                  Je compose des expériences numériques comme des morceaux bien produits.
+                </p>
+              </div>
             </div>
-            <div>
-              <h1 className="text-white mb-4 text-[32px] md:text-[40px]">Alexis MAUGAIN</h1>
-              <p className="text-lg md:text-xl text-neutral-300">
-                Je compose des expériences numériques comme des morceaux bien produits.
-              </p>
-            </div>
+            <p className="text-lg text-neutral-300 md:hidden">
+              Je compose des expériences numériques comme des morceaux bien produits.
+            </p>
           </div>
 
           <div className="space-y-6 text-neutral-300 pb-12 md:pb-16">
@@ -325,7 +330,7 @@ export default function App() {
             </a>
 
             <a
-              href="https://github.com/alexouuuuuuuuuuu"
+              href="https://github.com/alexis-maugain"
               target="_blank"
               rel="noopener noreferrer"
               className="flex items-center gap-4 p-6 bg-neutral-900 hover:bg-neutral-800 rounded-lg transition-colors group"
@@ -335,7 +340,7 @@ export default function App() {
               </div>
               <div>
                 <p className="text-white">GitHub</p>
-                <p className="text-neutral-400">@alexouuuuuuuuuuu</p>
+                <p className="text-neutral-400">@alexis-maugain</p>
               </div>
             </a>
 
