@@ -252,7 +252,7 @@ export default function App() {
         >
           <div className="mb-8 flex items-start md:items-center gap-6">
             <div className="w-32 h-32 md:w-40 md:h-40 rounded-full bg-gradient-to-br from-green-400 to-green-600 flex items-center justify-center flex-shrink-0">
-              <img src="./assets/moi.png" alt="Alexis MAUGAIN" className="w-32 h-32 md:w-40 md:h-40 rounded-full object-cover" loading="lazy" />
+              <img src="./assets/moi.webp" alt="Alexis MAUGAIN" className="w-32 h-32 md:w-40 md:h-40 rounded-full object-cover" loading="lazy" />
             </div>
             <div>
               <h1 className="text-white mb-4 text-[32px] md:text-[40px]">Alexis MAUGAIN</h1>
