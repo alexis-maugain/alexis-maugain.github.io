@@ -328,6 +328,7 @@ export default function App() {
                 <p className="text-neutral-400">alexis.maugain@gmail.com</p>
               </div>
             </a>
+            
 
             <a
               href="https://github.com/alexis-maugain"
